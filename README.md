@@ -1,23 +1,23 @@
-# GitHub Action Kotlin Linter
+# GitHub Action ktlint Linter
 
-This GitHub action runs the Kotlin Linter, [ktlint](https://github.com/pinterest/ktlint).
+This GitHub action runs the Kotlin Formatter [ktlint](https://github.com/pinterest/ktlint).
 
 ## Inputs
 
-### `patterns`
-
-**Optional** A list of patterns to pass along to the `ktlint` command. Default: `**/*.kt`
+**Optional**: A list of patterns to pass along to the `ktlint` command in `with: args:`.
 
 ## Example usage
+Create the folder `.github` in your repository, and create inside a 
+file `ktlint-formatter.yaml` with the following code:
 
 ```
-name: ktlint
+name: ktlint formatting
 
 on:
+  push:
+    branches: [ master ]
   pull_request:
-    paths:
-      - "**/*.kt"
-      - ".github/workflows/ktlint.yml"
+    branches: [ master ]
 
  jobs:
    ktlint:
@@ -28,5 +28,9 @@ on:
          uses: actions/checkout@v2
 
        - name: "ktlint"
-         uses: "vroy/gha-kotlin-linter@v1"
+         uses: "block42-blockchain-company/ktlint-action@master"
+         with:
+           args: "-F"
 ```
+
+Now everytime you push to master or create a Pull Request, your code will be formatted by ktlint!
