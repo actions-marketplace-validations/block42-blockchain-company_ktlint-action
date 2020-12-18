@@ -7,24 +7,25 @@ Create the folder `.github` in your repository, and create inside a
 file `ktlint-formatter.yaml` with the following code:
 
 ```
-name: ktlint formatting
+name: ktlint
 
 on:
-  push:
-    branches: [ master ]
   pull_request:
-    branches: [ master ]
+    paths:
+      - "**/*.kt"
+      - ".github/workflows/ktlint.yml"
 
-jobs:
-  ktlint:
-   runs-on: ubuntu-latest
-  
-   steps:
-     - name: "checkout"
-       uses: actions/checkout@v2
-  
-     - name: "ktlint"
-       uses: "block42-blockchain-company/ktlint-action@master"
+ jobs:
+   ktlint:
+     runs-on: ubuntu-latest
+
+     steps:
+       - name: "checkout"
+         uses: actions/checkout@v2
+
+       - name: "ktlint"
+         uses: "block42-blockchain-company/ktlint-action@master"
 ```
 
-Now everytime you push to master or create a Pull Request, your code will be formatted by ktlint!
+Now everytime you create a Pull Request, ktlint will check if your code is properly formatted and fail if it isn't!
+
