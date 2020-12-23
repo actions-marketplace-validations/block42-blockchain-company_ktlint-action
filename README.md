@@ -15,16 +15,16 @@ on:
       - "**/*.kt"
       - ".github/workflows/ktlint.yml"
 
- jobs:
-   ktlint:
-     runs-on: ubuntu-latest
+jobs:
+  ktlint:
+    runs-on: ubuntu-latest
 
-     steps:
-       - name: "checkout"
-         uses: actions/checkout@v2
+    steps:
+      - name: "checkout"
+        uses: actions/checkout@v2
 
-       - name: "ktlint"
-         uses: "block42-blockchain-company/ktlint-action@master"
+      - name: "ktlint"
+        uses: "block42-blockchain-company/ktlint-action@master"
 ```
 
 Now everytime you create a Pull Request, ktlint will check if your code is properly formatted and fail if it isn't!
